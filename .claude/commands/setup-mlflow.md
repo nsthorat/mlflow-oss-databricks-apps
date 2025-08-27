@@ -13,7 +13,7 @@ I'm helping you create a new Databricks application: **$ARGUMENTS**
 **If you're in the `databricks-solutions/claude-databricks-app-template` repository:**
 [I'll check if the current user is nsthorat by running `whoami`]
 
-If you're **nsthorat**: You can test the `/dba` workflow directly in this template repository.
+If you're **nsthorat**: You can test the `/setup-mlflow` workflow directly in this template repository.
 
 If you're **not nsthorat**: You're in the template repository! To create your own Databricks app:
 
@@ -21,7 +21,7 @@ If you're **not nsthorat**: You're in the template repository! To create your ow
 2. **Click "Use this template"** → "Create a new repository"
 3. **Create your repository** with your desired name
 4. **Clone your new repository** locally
-5. **Navigate to your cloned repository** and run `/dba` again
+5. **Navigate to your cloned repository** and run `/setup-mlflow` again
 
 **If you're in a Databricks app project created from the template:**
 Perfect! You're already in a Databricks app project. I'll help you set up and customize your app.
@@ -32,7 +32,7 @@ It looks like you're not in a Databricks app project. To get started:
 1. **Go to the template**: https://github.com/databricks-solutions/claude-databricks-app-template
 2. **Use the template** to create your own repository
 3. **Clone your new repository** locally
-4. **Navigate to your cloned repository** and run `/dba` again
+4. **Navigate to your cloned repository** and run `/setup-mlflow` again
 
 ---
 

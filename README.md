@@ -2,9 +2,9 @@
 
 A modern, full-stack application template for building Databricks Apps with Python FastAPI backend and React TypeScript frontend. 
 
-**[Claude Code](https://claude.ai/code)-centric workflow** - a single `/dba` command transforms your ideas into deployed applications. Claude guides you through product requirements, technical design, implementation, and deployment. It knows the entire Databricks Apps ecosystem and self-heals by automatically diagnosing and fixing issues.
+**[Claude Code](https://claude.ai/code)-centric workflow** - a single `/setup-mlflow` command transforms your ideas into deployed applications. Claude guides you through product requirements, technical design, implementation, and deployment. It knows the entire Databricks Apps ecosystem and self-heals by automatically diagnosing and fixing issues.
 
-The `/dba` workflow acts as your product strategist and development architect - brainstorming ideas with you, then building everything all the way to deployment.
+The `/setup-mlflow` workflow acts as your product strategist and development architect - brainstorming ideas with you, then building everything all the way to deployment.
 
 ![Databricks Apps](https://img.shields.io/badge/Databricks-Apps-orange)
 ![FastAPI](https://img.shields.io/badge/FastAPI-0.104+-green)
@@ -27,15 +27,15 @@ cd your-databricks-app
 
 ### 3. Choose Your Development Approach
 
-#### Option A: Automatic Workflow with `/dba` (Recommended)
+#### Option A: Automatic Workflow with `/setup-mlflow` (Recommended)
 
 Open your repository in [Claude Code](https://claude.ai/code) and run the fully automated, opinionated workflow:
 
 ```
-/dba describe your app here
+/setup-mlflow describe your app here
 ```
 
-The `/dba` command will:
+The `/setup-mlflow` command will:
 - ✅ **Set up your development environment** with interactive configuration
 - ✅ **Test your app locally** before deployment to catch issues early
 - ✅ **Create or verify your Databricks app** exists
@@ -68,7 +68,7 @@ This approach gives you complete flexibility while still benefiting from Claude'
 
 ## 🎬 Demo
 
-This is a [40-minute walkthrough demo](https://youtu.be/jDBTfxk1r7Q) of making an app from start to finish using the `/dba` command in Claude Code.
+This is a [40-minute walkthrough demo](https://youtu.be/jDBTfxk1r7Q) of making an app from start to finish using the `/setup-mlflow` command in Claude Code.
 
 **Working Example**: [trace-summary-dashboard branch](https://github.com/databricks-solutions/claude-databricks-app-template/tree/trace-summary-dashboard) - Complete implementation from the video  
 **See the Changes**: [View diff](https://github.com/databricks-solutions/claude-databricks-app-template/compare/trace-summary-dashboard?expand=1) - All code changes made during the demo
@@ -149,7 +149,7 @@ The `setup.sh` script will help you install any missing dependencies with intera
 
 ## 🚀 Quick Start (Manual Setup)
 
-> **Note:** This section is for manual setup. For the automated workflow, use the `/dba` command described above.
+> **Note:** This section is for manual setup. For the automated workflow, use the `/setup-mlflow` command described above.
 
 ### 1. Setup Environment
 
