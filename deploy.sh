@@ -196,8 +196,6 @@ if [ "$CREATE_APP" = true ]; then
   print_timing "App creation check completed"
 fi
 
-mkdir -p build
-
 # Generate requirements.txt from pyproject.toml without editable installs
 print_timing "Starting requirements generation"
 echo "📦 Generating requirements.txt..."
@@ -209,18 +207,43 @@ else
 fi
 print_timing "Requirements generation completed"
 
-# Build frontend
-print_timing "Starting frontend build"
-echo "🏗️  Building frontend..."
-cd client
-if [ "$VERBOSE" = true ]; then
-  npm run build
-else
-  npm run build > /dev/null 2>&1
-fi
-cd ..
-echo "✅ Frontend build complete"
-print_timing "Frontend build completed"
+# Download and extract MLflow UI assets from PyPI
+print_timing "Downloading MLflow UI assets"
+echo "🎨 Downloading latest MLflow UI assets from PyPI..."
+
+# Create temp directory for extraction
+TEMP_ASSETS_DIR=$(mktemp -d)
+echo "Using temp directory: $TEMP_ASSETS_DIR"
+
+# Get the latest MLflow version from PyPI
+MLFLOW_VERSION=$(curl -s https://pypi.org/pypi/mlflow/json | python3 -c "import json,sys;print(json.load(sys.stdin)['info']['version'])")
+echo "Latest MLflow version: $MLFLOW_VERSION"
+
+# Download the MLflow wheel
+echo "Downloading MLflow $MLFLOW_VERSION wheel..."
+curl -sL "https://files.pythonhosted.org/packages/py3/m/mlflow/mlflow-${MLFLOW_VERSION}-py3-none-any.whl" -o "$TEMP_ASSETS_DIR/mlflow.whl"
+
+# Extract UI assets
+echo "Extracting UI assets..."
+cd "$TEMP_ASSETS_DIR"
+unzip -q mlflow.whl 'mlflow/server/js/build/*'
+cd - > /dev/null
+
+# Copy assets to project directory
+echo "Copying UI assets to project..."
+rm -rf mlflow-ui-assets
+cp -r "$TEMP_ASSETS_DIR/mlflow/server/js/build" mlflow-ui-assets
+
+# Remove source maps and license files to reduce size
+echo "Removing unnecessary files (source maps, licenses)..."
+find mlflow-ui-assets -name "*.map" -type f -delete
+find mlflow-ui-assets -name "*.LICENSE.txt" -type f -delete
+
+# Clean up temp directory
+rm -rf "$TEMP_ASSETS_DIR"
+
+echo "✅ UI assets prepared successfully"
+print_timing "UI assets download completed"
 
 # Create workspace directory and upload source
 print_timing "Starting workspace setup"

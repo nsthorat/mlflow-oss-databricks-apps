@@ -1,4 +1,10 @@
-command: [
-  "uvicorn",
-  "server.app:app"
-]
+command: ["bash", "start_mlflow.sh"]
+
+env:
+  - name: MLFLOW_TRACKING_URI
+    value: databricks
+  - name: MLFLOW_REGISTRY_URI
+    value: databricks-uc
+  - name: MLFLOW_DEFAULT_ARTIFACT_ROOT
+    value: /Volumes/main/default/mlflow-artifacts
+  # DATABRICKS_HOST and DATABRICKS_TOKEN are automatically provided by Databricks Apps
