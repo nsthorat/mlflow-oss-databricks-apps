@@ -46,10 +46,14 @@ echo "MLFLOW_DEFAULT_ARTIFACT_ROOT: $MLFLOW_DEFAULT_ARTIFACT_ROOT"
 echo "DATABRICKS_HOST: $DATABRICKS_HOST"
 echo "DATABRICKS_TOKEN: [REDACTED]"
 
-echo "Starting MLflow server with Databricks backend..."
+echo "Starting MLflow server with configured backends..."
+echo "Backend Store URI: $MLFLOW_TRACKING_URI"
+echo "Registry Store URI: $MLFLOW_REGISTRY_URI"
+echo "Default Artifact Root: $MLFLOW_DEFAULT_ARTIFACT_ROOT"
+
 exec mlflow server \
     --host 0.0.0.0 \
     --port 8000 \
-    --backend-store-uri databricks \
-    --registry-store-uri databricks-uc \
-    --default-artifact-root /Volumes/main/default/mlflow-artifacts
+    --backend-store-uri "$MLFLOW_TRACKING_URI" \
+    --registry-store-uri "$MLFLOW_REGISTRY_URI" \
+    --default-artifact-root "$MLFLOW_DEFAULT_ARTIFACT_ROOT"

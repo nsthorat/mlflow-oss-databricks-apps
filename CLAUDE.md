@@ -96,12 +96,32 @@ uv run python scripts/generate_semver_requirements.py
 
 ## Deployment Commands
 
+### 🚨 CRITICAL: ALWAYS Run Deploy with nohup 🚨
+
+**Deployment can take 5-10+ minutes. You MUST ALWAYS run deploy with nohup to a log file:**
+
+```bash
+# ✅ CORRECT - ALWAYS use nohup with logging
+nohup ./deploy.sh > /tmp/mlflow-deploy.log 2>&1 &
+
+# Monitor the deployment progress
+tail -f /tmp/mlflow-deploy.log
+
+# ❌ WRONG - Never run deploy directly
+./deploy.sh  # DON'T DO THIS - it will timeout or disconnect
+```
+
+**Why this is critical:**
+- Deployment involves building UI assets which takes several minutes
+- Direct execution may timeout or disconnect, leaving deployment in unknown state
+- Log file allows monitoring progress and debugging issues
+- Background execution ensures deployment completes even if terminal disconnects
+
+### Other Deployment Commands
+
 ```bash
 # Initial setup (one time)
 ./setup.sh
-
-# Deploy to Databricks Apps
-./deploy.sh
 
 # Check deployment status
 databricks apps list
@@ -110,6 +130,8 @@ databricks apps list
 source .env.local && export DATABRICKS_HOST && export DATABRICKS_TOKEN
 databricks apps get mlflow-oss
 ```
+
+**Note**: The long deployment time is because `build_mlflow_ui_assets.sh` needs to run `yarn build` to compile the MLflow UI assets when using a Git branch, which can take 5+ minutes.
 
 ## Testing the Deployment
 
