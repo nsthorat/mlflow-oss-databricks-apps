@@ -1,10 +1,10 @@
-command: ["bash", "start_mlflow.sh"]
+command: ["python", "start_mlflow.py"]
 
 env:
   - name: MLFLOW_TRACKING_URI
-    value: sqlite:///Volumes/rag/nst/mlflow-oss/mlflow-tracking.db
+    value: sqlite:////Volumes/rag/nst/mlflow-oss/mlflow-tracking.db
   - name: MLFLOW_REGISTRY_URI
-    value: sqlite:///Volumes/rag/nst/mlflow-oss/mlflow-registry.db
+    value: sqlite:////Volumes/rag/nst/mlflow-oss/mlflow-registry.db
   - name: MLFLOW_DEFAULT_ARTIFACT_ROOT
     value: /Volumes/rag/nst/mlflow-oss/mlflow-artifacts
   # DATABRICKS_HOST and DATABRICKS_TOKEN are automatically provided by Databricks Apps

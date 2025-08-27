@@ -1,6 +1,6 @@
 # Generated from pyproject.toml for Databricks Apps deployment
 # Avoids editable installs and hash conflicts
 
-mlflow @ git+https://github.com/nsthorat/mlflow.git@nik-databricks-tracking
+mlflow>=2.19.0
 databricks-sdk>=0.33.0
 gunicorn>=22.0.0

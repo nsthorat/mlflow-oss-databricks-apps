@@ -133,6 +133,33 @@ databricks apps get mlflow-oss
 
 **Note**: The long deployment time is because `build_mlflow_ui_assets.sh` needs to run `yarn build` to compile the MLflow UI assets when using a Git branch, which can take 5+ minutes.
 
+## Monitoring Application Logs
+
+### Real-time Log Streaming
+
+**Use the `dba_logz.py` script to stream application logs in real-time:**
+
+```bash
+# Stream all logs for 30 seconds
+uv run python dba_logz.py https://YOUR-APP-URL --duration 30
+
+# Search for specific terms in logs (e.g., errors)
+uv run python dba_logz.py https://YOUR-APP-URL --search "ERROR\|Exception" --duration 60
+
+# Monitor startup messages
+uv run python dba_logz.py https://YOUR-APP-URL --search "Application startup\|Uvicorn running" --duration 60
+
+# Continuous streaming (Ctrl+C to stop)
+uv run python dba_logz.py https://YOUR-APP-URL --duration 999999
+```
+
+**Script options:**
+- `app_url`: Base URL of your Databricks app
+- `--search`: Filter logs with search query (supports regex)
+- `--duration`: How long to stream logs in seconds (default: runs until interrupted)
+
+**Note:** Browser-based logs are available at `https://YOUR-APP-URL/logz` but require OAuth authentication.
+
 ## Testing the Deployment
 
 ```bash
